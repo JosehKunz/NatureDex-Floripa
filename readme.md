@@ -1,11 +1,10 @@
 
-
-# ** 🍃 NATUDEX FLORIPA 🍃 **
-
-
 ---------------------------------------------------------
+#  🍃 ** NATUDEX FLORIPA ** 🍃 
+---------------------------------------------------------
+
+
 # 🌱 Pacotes/Instalações
----------------------------------------------------------
 
 
 ## Na primeira vez é necessário instalar as dependencias:
@@ -50,10 +49,8 @@
 `node autoGen.swagger.js`
 
 
-
----------------------------------------------------------
 # 🌱 Testando o programa
----------------------------------------------------------
+
 
 ## 1. Rodando as Migrantions para ter o banco de dados para rodar o programa
 #### 1.1 Opção nº 1: `sequelize db:migrate`

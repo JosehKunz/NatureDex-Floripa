@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "NatureDex Floripa",
+    "title": "🍃 NatureDex Floripa 🍃",
     "description": "Aqui você pode registrar e buscar seus locais preferidos",
     "version": "1.0.0"
   },
@@ -19,6 +19,250 @@
     }
   },
   "paths": {
+
+    "/usuario/": {
+      "post": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Cadastrar um novo usuário.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "nome": {
+                  "example": "any"
+                },
+                "data_nascimento": {
+                  "example": "any"
+                },
+                "cep": {
+                  "example": "any"
+                },
+                "cpf": {
+                  "example": "any"
+                },
+                "sexo": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Fora do escopo inicial, mantive para testes",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/usuario/{id}": {
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/usuario/{email}": {
+      "delete": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Deletar um usuário.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Email do usuário a ser deletado"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "Token de autenticação do usuário",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário deletado com sucesso"
+          },
+          "400": {
+            "description": "Erro ao deletar"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          },
+          "500": {
+            "description": "Não foi possível deletar o usuário"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+
+    "/login/": {
+      "post": {
+        "tags": [
+          "Login (pegue o token)"
+        ],
+        "summary": "Realizar login de usuário.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados de login do usuário",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "josekunz@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "zebra"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "Token": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Os campos são obrigatórios"
+          },
+          "404": {
+            "description": "Não localizamos registro com estes dados!"
+          },
+          "500": {
+            "description": "Poxa.. algo deu errado!"
+          }
+        }
+      }
+    },
+
+
+
     "/local/": {
       "post": {
         "tags": [
@@ -373,245 +617,6 @@
             "BearerAuth": []
           }
         ]
-      }
-    },
-    "/usuario/": {
-      "post": {
-        "tags": [
-          "Usuário"
-        ],
-        "summary": "Cadastrar um novo usuário.",
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                },
-                "nome": {
-                  "example": "any"
-                },
-                "data_nascimento": {
-                  "example": "any"
-                },
-                "cep": {
-                  "example": "any"
-                },
-                "cpf": {
-                  "example": "any"
-                },
-                "sexo": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "schema": {
-              "$ref": "#/definitions/Usuario"
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Usuário"
-        ],
-        "summary": "Fora do escopo inicial, mantive para testes",
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
-      }
-    },
-    "/usuario/{id}": {
-      "get": {
-        "tags": [
-          "Usuário"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
-      }
-    },
-    "/usuario/{email}": {
-      "delete": {
-        "tags": [
-          "Usuário"
-        ],
-        "summary": "Deletar um usuário.",
-        "description": "",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": "Email do usuário a ser deletado"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "Token de autenticação do usuário",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Usuário deletado com sucesso"
-          },
-          "400": {
-            "description": "Erro ao deletar"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Usuário não encontrado"
-          },
-          "500": {
-            "description": "Não foi possível deletar o usuário"
-          }
-        },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
-      }
-    },
-    "/login/": {
-      "post": {
-        "tags": [
-          "1º - Login (pegue o token)"
-        ],
-        "summary": "Realizar login de usuário.",
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "description": "Dados de login do usuário",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "type": "string",
-                  "example": "josekunz@gmail.com"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "zebra"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "object"
-                },
-                "properties": {
-                  "type": "object",
-                  "properties": {
-                    "Token": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "example": "string"
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
-          },
-          "400": {
-            "description": "Os campos são obrigatórios"
-          },
-          "404": {
-            "description": "Não localizamos registro com estes dados!"
-          },
-          "500": {
-            "description": "Poxa.. algo deu errado!"
-          }
-        }
       }
     }
   },

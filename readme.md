@@ -8,14 +8,15 @@
 -----
 
 ## Na primeira vez é necessário instalar as dependencias:
-`npm install`
- Se for em ambiente local: `npm install --dev`
-`cp .env_example .env`
-'npm install cors'
+>  `npm install`
+>   Se for em ambiente local: 
+>  `npm install --dev`
+>  `cp .env_example .env`
+>  `npm install cors`
 
 ## As bibliotecas utilizadas são
 
-###  Para trabalhar com banco de dados
+### >>> Para trabalhar com banco de dados
 >  #### instalar o sequelize
 `npm install sequelize` 
 > #### instalar o driver do PostgreSQL
@@ -49,7 +50,7 @@
 
 
 
-
+---------------------------------------------------------
 # Testando o programa
 ---------------------------------------------------------
 
@@ -63,5 +64,6 @@
 
 ## Para rodar o repositório em ambiente local
 `npm run start:dev`
-## [Logo após, acesse o doc da API]
+
+## Logo após, acesse o doc da API
 (http://localhost:3000/docs/)

@@ -1,11 +1,12 @@
 
 
-# **NATUDEX FLORIPA**
+# ** 🍃 NATUDEX FLORIPA 🍃 **
 
 
+---------------------------------------------------------
+# 🌱 Pacotes/Instalações
+---------------------------------------------------------
 
-# Pacotes/Instalações
------
 
 ## Na primeira vez é necessário instalar as dependencias:
 >  `npm install`
@@ -51,7 +52,7 @@
 
 
 ---------------------------------------------------------
-# Testando o programa
+# 🌱 Testando o programa
 ---------------------------------------------------------
 
 ## 1. Rodando as Migrantions para ter o banco de dados para rodar o programa

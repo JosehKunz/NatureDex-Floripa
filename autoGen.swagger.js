@@ -1,11 +1,11 @@
 const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
-    info: {
-        title: "NatureDex Floripa",
-        description: "Aqui você pode registrar e buscar seus locais preferidos",
-        version: "1.0.0"
-      },
+  info: {
+    title: "NatureDex Floripa",
+    description: "Aqui você pode registrar e buscar seus locais preferidos",
+    version: "1.0.0"
+  },
   host: 'localhost:3000',
   security: [{"apiKeyAuth": []}],
   securityDefinitions: {

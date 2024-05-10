@@ -3,7 +3,7 @@ const { auth } = require('../middleware/auth')
 const { validarUsuario } = require('../middleware/validacaoUsuario_YUP');
 
 
-const UsuarioController = require('../controllers/usuarioController')
+const UsuarioController = require('../controllers/UsuarioController')
 
 
 

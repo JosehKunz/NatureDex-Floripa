@@ -3,17 +3,15 @@ const Local = require("../models/Local")
 
 class UsuarioController {
     
-   // MÉTODO GET PARA PEGAR OS DADOS DO USUARIO CADASTRADO
+   // MÉTODO GET PARA LISTAR TODOS OS USUARIOS (não estava no escopo inicial mas deixei para testes)
 
-  async listar(res){
+  async listar(req,res){
 
-    /*  
-    #swagger.tags = ['Usuario'],
-    #swagger.security = [{
-        "BearerAuth": []
-    }]
-    }
-*/
+        /* #swagger.tags = ['Usuário'] */
+        /* #swagger.summary = 'Fora do escopo inicial, mantive para testes' */
+        /* #swagger.security = [{
+            "BearerAuth": []
+        }] */
 
     const listausuarios = await Usuario.findAll()
     res.json(listausuarios)
@@ -22,23 +20,33 @@ class UsuarioController {
   // MÉTODO POST
    async cadastrar(req, res) {
 
-        /*  
-            #swagger.tags = ['Usuario'],
-            #swagger.parameters['body'] = {
-                in: 'body',
-                description: 'Adiciona um novo Aluno',
-                schema: {
-                nome: "Um nome qualquer",
-                sexo: "M",
-                $email: "teste@gmail.com",
-                password: "zebra",
-                $cpf: "02402402402",
-                cep: "90810180",
-                data_nascimento: "2000-12-09",
-                endereco: "Armação do Pântano do Sul, Servidão Pousada da Praia"
-                }
-        }
-    */
+                /* #swagger.tags = ['Usuário'] */
+                /* #swagger.summary = 'Cadastrar um novo usuário.' */
+                /* #swagger.parameters['body'] = {
+                    in: 'body',
+                    description: 'Dados do novo usuário',
+                    required: true,
+                    schema: {
+                        $email: "email_unico@natudex.com",
+                        $password: "senha",
+                        $nome: "Nome do usuário",
+                        $cpf: "02494078093",
+                        data_nascimento: "12-05-1989",
+                        sexo:"M",
+                        endereco: "insira aqui",
+                        cep: "90810180"
+
+                    }
+                } */
+                /* #swagger.responses[201] = {
+                    description: 'Created',
+                    schema: {
+                        $ref: "#/definitions/Usuario"
+                    }
+                } */
+                /* #swagger.responses[400] = {
+                    description: 'Bad Request'
+                } */
         try {
             console.log(req.body); 
 
@@ -86,6 +94,10 @@ class UsuarioController {
 
     async listarUm(req,res) {
         try {
+                /* #swagger.tags = ['Usuário'] */
+                /* #swagger.security = [{
+                    "BearerAuth": []
+                }] */
 
             const { id } = req.params
     
@@ -111,6 +123,38 @@ class UsuarioController {
         // DELETANDO UM USUARIO
         async deletar(req, res) {
             try {
+
+                 /*  
+                #swagger.tags = ['Usuário'],
+                #swagger.summary = 'Deletar um usuário.',
+                #swagger.security = [{
+                    "BearerAuth": []
+                }],
+                #swagger.parameters['authorization'] = {
+                    in: 'header',
+                    description: 'Token de autenticação do usuário',
+                    required: true
+                },
+                #swagger.parameters['email'] = {
+                    in: 'path',
+                    description: 'Email do usuário a ser deletado',
+                    required: true
+                },
+                #swagger.responses[200] = {
+                    description: 'Usuário deletado com sucesso'
+                },
+                #swagger.responses[400] = {
+                    description: 'Erro ao deletar'
+                },
+                #swagger.responses[404] = {
+                    description: 'Usuário não encontrado'
+                },
+                #swagger.responses[500] = {
+                    description: 'Não foi possível deletar o usuário'
+                }
+                */
+
+
                 const email = req.params.email; // Acessando o email fornecido pelo usuário na requisição
                 const id_usuario = req.payload.sub; // Acessando o ID do usuário a partir do token no header
 

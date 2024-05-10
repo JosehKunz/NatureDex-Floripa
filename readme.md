@@ -1,15 +1,16 @@
 
 
+# **NATUDEX FLORIPA**
+
+
 ---------------------------------------------------------
+# Pacotes/Instalações
+
 ## Na primeira vez é necessário instalar as dependencias:
 `npm install`
  Se for em ambiente local: `npm install --dev`
 `cp .env_example .env`
 'npm install cors'
-
-## Rode as Migrantions para ter o banco de dados para rodar o programa
-1. Opção nº 1: `sequelize db:migrate`
-2. Opção nº 2: `npx sequelize db:migrate`
 
 ## As bibliotecas utilizadas são
 
@@ -42,9 +43,15 @@ Para auxiliar com a segurança e autenticação
 `npm install yup`
 ---------------------------------------------------------
 
-## colocando dados iniciais nas tabelas criadas via sequelize:
-1. `npx sequelize db:seed --seed usuarios.seeders.js`
-2. `npx sequelize db:seed --seed locais.seeders.js`
+# Testando o programa
+
+## 1. Rodando as Migrantions para ter o banco de dados para rodar o programa
+1.1 Opção nº 1: `sequelize db:migrate`
+1.2 Opção nº 2: `npx sequelize db:migrate`
+
+## 2. colocando dados iniciais nas tabelas criadas via sequelize:
+2.1 `npx sequelize db:seed --seed usuarios.seeders.js`
+2.2 `npx sequelize db:seed --seed locais.seeders.js`
 
 ## Para rodar o repositório em ambiente local
 `npm run start:dev`

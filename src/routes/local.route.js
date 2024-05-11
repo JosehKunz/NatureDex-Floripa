@@ -10,5 +10,6 @@ localRoutes.get('/', auth, localController.listar)
 localRoutes.get('/:id', auth, localController.listarUm)
 localRoutes.delete('/:id', auth, localController.deletar)
 localRoutes.put('/:id', auth, localController.atualizar)
+localRoutes.get('/:id/maps', auth, localController.pegarmapa)
 
 module.exports = localRoutes

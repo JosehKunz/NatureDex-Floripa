@@ -69,10 +69,10 @@ class localController {
             }
         } */
         /* #swagger.responses[400] = {
-            description: 'Bad Request'
+            description: 'nome, cep e descrição são obrigatórios'
         } */
         /* #swagger.responses[500] = {
-            description: 'Internal Server Error'
+            description: 'Não foi possível cadastrar o local, tente outro CEP'
         } */
 
       const nome = req.body.nome;
@@ -100,7 +100,7 @@ class localController {
       res.status(201).json(cadastrarlocal);
     } catch (error) {
       console.log(error.message);
-      res.status(500).json({ error: 'Não foi possível cadastrar o local' });
+      res.status(500).json({ error: 'Não foi possível cadastrar o local, tente outro CEP' });
     }
   }
 

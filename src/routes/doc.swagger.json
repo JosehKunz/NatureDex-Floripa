@@ -296,13 +296,13 @@
             }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "nome, cep e descrição são obrigatórios"
           },
           "401": {
             "description": "Unauthorized"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Não foi possível cadastrar o local, tente outro CEP"
           }
         },
         "security": [

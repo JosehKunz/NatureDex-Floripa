@@ -56,7 +56,7 @@
 #### 1.1 Opção nº 1: `sequelize db:migrate`
 #### 1.2 Opção nº 2: `npx sequelize db:migrate`
 
-## 2. colocando dados iniciais nas tabelas criadas via sequelize:
+## 2. colocando dados iniciais nas tabelas criadas via sequelize  ( **siga a ordem** , caso não dê certo, use sem o npx como no passo anterior):
 #### 2.1 `npx sequelize db:seed --seed usuarios.seeders.js`
 #### 2.2 `npx sequelize db:seed --seed locais.seeders.js`
 

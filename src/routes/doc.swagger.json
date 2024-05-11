@@ -26,7 +26,7 @@
           "Usuário"
         ],
         "summary": "Cadastrar um novo usuário.",
-        "description": "",
+        "description": "E-mail e cpf precisam ser únicos, sexo só aceitamos M ou F no momento",
         "parameters": [
           {
             "name": "body",
@@ -35,27 +35,36 @@
               "type": "object",
               "properties": {
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "nota_10@trabalhotop.com.br"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "ajudaEU"
                 },
                 "nome": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "melhorProfessor"
                 },
                 "data_nascimento": {
-                  "example": "any"
+                  "type": "string",
+                  "format": "date",
+                  "example": "2020-01-01"
                 },
                 "cep": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "90810160"
                 },
                 "cpf": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "02594075000"
                 },
                 "sexo": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "M"
                 }
-              }
+              },
+              "required": ["email", "password", "nome", "data_nascimento", "cep", "cpf", "sexo"]
             }
           }
         ],
@@ -78,13 +87,14 @@
         "tags": [
           "Usuário"
         ],
-        "summary": "Fora do escopo inicial, mantive para testes",
+        "summary": "Fora do escopo inicial, mantive para testes afim de ter uma lista completa. Tipo um acesso Admin",
         "description": "",
         "parameters": [
           {
             "name": "authorization",
             "in": "header",
-            "type": "string"
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
           }
         ],
         "responses": {
@@ -93,46 +103,6 @@
           },
           "401": {
             "description": "Unauthorized"
-          }
-        },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
-      }
-    },
-    "/usuario/{id}": {
-      "get": {
-        "tags": [
-          "Usuário"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         },
         "security": [
@@ -155,14 +125,17 @@
             "in": "path",
             "required": true,
             "type": "string",
-            "description": "Email do usuário a ser deletado"
+            "description": "Optamos por utilizar o e-mail como referência, para testar",
+            "example": "josekunz@gmail.com"
           },
           {
             "name": "authorization",
             "in": "header",
             "description": "Token de autenticação do usuário",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
           }
         ],
         "responses": {
@@ -208,11 +181,13 @@
               "properties": {
                 "email": {
                   "type": "string",
-                  "example": "josekunz@gmail.com"
+                  "example": "josekunz@gmail.com",
+                  "default": "josekunz@gmail.com"
                 },
                 "password": {
                   "type": "string",
-                  "example": "zebra"
+                  "example": "zebra",
+                  "default": "zebra"
                 }
               }
             }
@@ -269,14 +244,16 @@
           "Local"
         ],
         "summary": "Cadastrar um novo local.",
-        "description": "",
+        "description": " Note que a informação de *Localidade* é completada diretamente via api",
         "parameters": [
           {
             "name": "authorization",
             "in": "header",
             "description": "Token de autenticação do usuário",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
           },
           {
             "name": "body",
@@ -288,15 +265,19 @@
               "properties": {
                 "nome": {
                   "type": "string",
-                  "example": "Nome do local"
+                  "example": "Nome do local",
+                  "default": "Nome do local"
                 },
                 "descricao": {
                   "type": "string",
-                  "example": "Descrição do local"
+                  "example": "Descrição do local",
+                  "default": "Descrição do local"
                 },
                 "cep": {
                   "type": "string",
-                  "example": "88066000"
+                  "example": "88066000",
+                  "default": "88066000"
+
                 }
               },
               "required": [
@@ -341,7 +322,9 @@
             "in": "header",
             "description": "Token de autenticação do usuário",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
           }
         ],
         "responses": {
@@ -377,7 +360,9 @@
             "in": "header",
             "description": "Token de autenticação do usuário",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
           }
         ],
         "responses": {
@@ -427,14 +412,17 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "description": "ID do local a ser deletado"
+            "description": "ID do local a ser deletado",
+            "default": "2"
           },
           {
             "name": "authorization",
             "in": "header",
             "description": "Token de autenticação do usuário",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
           }
         ],
         "responses": {
@@ -493,14 +481,17 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "description": "ID do local a ser atualizado"
+            "description": "ID do local a ser atualizado",
+            "default": "4"
           },
           {
             "name": "authorization",
             "in": "header",
             "description": "Token de autenticação do usuário",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
           },
           {
             "name": "body",
@@ -565,7 +556,7 @@
         "tags": [
           "Local"
         ],
-        "summary": "Buscar mapa de um local específico",
+        "summary": "Buscar mapa de um local específico, gerando um link",
         "description": "",
         "parameters": [
           {
@@ -573,14 +564,17 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "description": "ID do local a ser buscado"
+            "description": "ID do local a ser buscado",
+            "default": "4"
           },
           {
             "name": "authorization",
             "in": "header",
             "description": "Token de autenticação do usuário",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
           }
         ],
         "responses": {

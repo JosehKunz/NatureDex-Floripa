@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "870381f0-73f9-4231-aa82-877694ace702",
+		"name": "NatureDex Floripa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33911785"
+	},
+	"item": [
+		{
+			"name": "Login/TOKEN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "        {\r\n        \"email\" : \"josekunz@gmail.com\",\r\n        \"password\" : \"zebra\" \r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/login/"
+			},
+			"response": []
+		},
+		{
+			"name": "Postando Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "       {\r\n        \"nome\" : \"José Oswaldo Kunz neto\",\r\n        \"sexo\": \"M\",\r\n        \"email\" : \"josekun4z@gmail.cob\",\r\n        \"password\": \"zebra\",\r\n        \"cpf\": \"02594075003\",\r\n        \"cep\": \"908101870\",\r\n        \"data_nascimento\": \"2025-12-09\",\r\n        \"endereco\": \"teste teste\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/usuario/"
+			},
+			"response": []
+		},
+		{
+			"name": "Postando Local",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29iIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1MzAwOTU0fQ.k_9lgO2twO64uoIxECyQPKIZ2z3Js91stRV5Jjy9M_4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "       {\r\n       \"nome\" : \"teste\",\r\n        \"descricao\" : \"ZEBRA\",\r\n        \"cep\": \"88066000\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/local"
+			},
+			"response": []
+		},
+		{
+			"name": "Ver Locais",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29iIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1MjE1NDQ4fQ.y0Z4t5EEXZsalrFZY-CqUVOqt7x_zmfZSc-6EWiY4bY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/local/"
+			},
+			"response": []
+		},
+		{
+			"name": "Ver Usuario",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29iIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1MzA0MzIyfQ.6HNGus0qiOURg8lRw1aIpmCLcfo1bgPY_CjX2as64TE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "Ver Local Específico",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29iIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1MzA0NDEzfQ.mwDDqVztaThUMjssxg6BMAQkXbI0btmRXJK5yQpsr8M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/local/11"
+			},
+			"response": []
+		},
+		{
+			"name": "Ver Local Específico Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29iIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1MzA0NDEzfQ.mwDDqVztaThUMjssxg6BMAQkXbI0btmRXJK5yQpsr8M",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/local/11/maps"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Local Específico",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoicXVpbnRpbmlzc2ltb0BnbWFpbC5jb20iLCJub21lIjoiTWFyaW8gUXVpbnRpbm8iLCJpYXQiOjE3MTUyMTM2MjB9.vmQD5NlYATM6vBWJk5U8ACkZYENye7M6K9J_x3OpQkw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/local/10"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar  Usuario Especifico",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoicXVpbnRpbmlzc2ltb0BnbWFpbC5jb20iLCJub21lIjoiTWFyaW8gUXVpbnRpbm8iLCJpYXQiOjE3MTUyMTM2MjB9.vmQD5NlYATM6vBWJk5U8ACkZYENye7M6K9J_x3OpQkw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/usuario/quintinissimo@gmail.com"
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar Local",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIEt1bnoiLCJpYXQiOjE3MTUwNDE1ODh9.35BCXI7k_lbDe0cjWY-34_TYqsoCCrFfQudhdDuWN84",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "       {\r\n       \"nome\" : \"LOCAL ALTERADO\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/local/1"
+			},
+			"response": []
+		}
+	]
+}

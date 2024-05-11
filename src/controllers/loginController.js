@@ -5,6 +5,42 @@ class loginController {
 
     async login(req, res) {
         try {
+
+            /*  
+            #swagger.tags = ['Login (pegue o token)'],
+            #swagger.summary = 'Realizar login de usuário.',
+            #swagger.parameters['body'] = {
+                in: 'body',
+                description: 'Dados de login do usuário',
+                required: true,
+                schema: {
+                    email: "josekunz@gmail.com",
+                    password: "zebra"
+                }
+            },
+            #swagger.responses[200] = {
+                description: 'OK',
+                schema: {
+                    type: 'object',
+                    properties: {
+                        Token: {
+                            type: 'string'
+                        }
+                    }
+                }
+            },
+            #swagger.responses[400] = {
+                description: 'Os campos são obrigatórios'
+            },
+            #swagger.responses[404] = {
+                description: 'Não localizamos registro com estes dados!'
+            },
+            #swagger.responses[500] = {
+                description: 'Poxa.. algo deu errado!'
+            }
+            */
+
+
             const email = req.body.email
             const password = req.body.password
 

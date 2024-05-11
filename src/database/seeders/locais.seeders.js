@@ -7,8 +7,8 @@ module.exports = {
             {       
                     id_usuario:1,
                     nome : "Local 1",
-                    descricao : "Joaquina",
-                    cep: "88010510"
+                    descricao : "Barra da Lagoa",
+                    cep: "88061300"
             },
             {       
                 id_usuario:1,

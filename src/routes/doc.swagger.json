@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "NatureDex Floripa",
+    "title": "🍃 NatureDex Floripa 🍃",
     "description": "Aqui você pode registrar e buscar seus locais preferidos",
     "version": "1.0.0"
   },
@@ -19,40 +19,281 @@
     }
   },
   "paths": {
-    "/local/": {
+
+    "/usuario/": {
       "post": {
-        "description": "",
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Cadastrar um novo usuário.",
+        "description": "E-mail e cpf precisam ser únicos, sexo só aceitamos M ou F no momento",
         "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          },
           {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "nome": {
-                  "example": "any"
+                "email": {
+                  "type": "string",
+                  "example": "nota_10@trabalhotop.com.br"
                 },
-                "descricao": {
-                  "example": "any"
+                "password": {
+                  "type": "string",
+                  "example": "ajudaEU"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "melhorProfessor"
+                },
+                "data_nascimento": {
+                  "type": "string",
+                  "format": "date",
+                  "example": "2020-01-01"
                 },
                 "cep": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "90810160"
                 },
-                "localidade": {
-                  "example": "any"
+                "cpf": {
+                  "type": "string",
+                  "example": "02594075000"
+                },
+                "sexo": {
+                  "type": "string",
+                  "example": "M"
+                }
+              },
+              "required": ["email", "password", "nome", "data_nascimento", "cep", "cpf", "sexo"]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Usuario"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Fora do escopo inicial, mantive para testes afim de ter uma lista completa. Tipo um acesso Admin",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/usuario/{email}": {
+      "delete": {
+        "tags": [
+          "Usuário"
+        ],
+        "summary": "Deletar um usuário.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Optamos por utilizar o e-mail como referência, para testar",
+            "example": "josekunz@gmail.com"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "Token de autenticação do usuário",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuário deletado com sucesso"
+          },
+          "400": {
+            "description": "Erro ao deletar"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Usuário não encontrado"
+          },
+          "500": {
+            "description": "Não foi possível deletar o usuário"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+
+    "/login/": {
+      "post": {
+        "tags": [
+          "Login (pegue o token)"
+        ],
+        "summary": "Realizar login de usuário.",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados de login do usuário",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "josekunz@gmail.com",
+                  "default": "josekunz@gmail.com"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "zebra",
+                  "default": "zebra"
                 }
               }
             }
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "Token": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Os campos são obrigatórios"
+          },
+          "404": {
+            "description": "Não localizamos registro com estes dados!"
+          },
+          "500": {
+            "description": "Poxa.. algo deu errado!"
+          }
+        }
+      }
+    },
+
+
+
+    "/local/": {
+      "post": {
+        "tags": [
+          "Local"
+        ],
+        "summary": "Cadastrar um novo local.",
+        "description": " Note que a informação de *Localidade* é completada diretamente via api",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "Token de autenticação do usuário",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados do novo local",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Nome do local",
+                  "default": "Nome do local"
+                },
+                "descricao": {
+                  "type": "string",
+                  "example": "Descrição do local",
+                  "default": "Descrição do local"
+                },
+                "cep": {
+                  "type": "string",
+                  "example": "88066000",
+                  "default": "88066000"
+
+                }
+              },
+              "required": [
+                "nome",
+                "descricao",
+                "cep"
+              ]
+            }
+          }
+        ],
+        "responses": {
           "201": {
-            "description": "Created"
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Local"
+            }
           },
           "400": {
             "description": "Bad Request"
@@ -63,15 +304,27 @@
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       },
       "get": {
+        "tags": [
+          "Local"
+        ],
         "description": "",
         "parameters": [
           {
             "name": "authorization",
             "in": "header",
-            "type": "string"
+            "description": "Token de autenticação do usuário",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
           }
         ],
         "responses": {
@@ -89,96 +342,180 @@
     },
     "/local/{id}": {
       "get": {
+        "tags": [
+          "Local"
+        ],
+        "summary": "Buscar informações de um local específico.",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "ID do local a ser buscado"
           },
           {
             "name": "authorization",
             "in": "header",
-            "type": "string"
+            "description": "Token de autenticação do usuário",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Local"
+            }
           },
           "401": {
             "description": "Unauthorized"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Local não encontrado"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Não foi possível buscar o local"
           }
-        }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       },
       "delete": {
+        "tags": [
+          "Local"
+        ],
+        "summary": "Deletar um local existente.",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "ID do local a ser deletado",
+            "default": "2"
           },
           {
             "name": "authorization",
             "in": "header",
-            "type": "string"
+            "description": "Token de autenticação do usuário",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Local deletado com sucesso"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "401": {
             "description": "Unauthorized"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Not Found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Local não encontrado"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Não foi possível deletar o local"
           }
-        }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       },
       "put": {
+        "tags": [
+          "Local"
+        ],
+        "summary": "Atualizar um local existente.",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "ID do local a ser atualizado",
+            "default": "4"
           },
           {
             "name": "authorization",
             "in": "header",
-            "type": "string"
+            "description": "Token de autenticação do usuário",
+            "required": true,
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
           },
           {
             "name": "body",
             "in": "body",
+            "description": "Dados atualizados do local",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "nome": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Novo nome"
                 },
                 "descricao": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Nova descrição"
                 },
                 "cep": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "88066000"
                 },
                 "localidade": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Localidade atualizada do local"
                 }
               }
             }
@@ -186,47 +523,25 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Local"
+            }
           },
           "401": {
             "description": "Unauthorized"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Local não encontrado",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           },
           "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/usuario/": {
-      "post": {
-        "tags": [
-          "Usuario"
-        ],
-        "description": "",
-        "responses": {
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Usuario"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "401": {
-            "description": "Unauthorized"
+            "description": "Internal Server Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         },
         "security": [
@@ -236,117 +551,66 @@
         ]
       }
     },
-    "/usuario/{id}": {
+    "/local/{id}/maps": {
       "get": {
+        "tags": [
+          "Local"
+        ],
+        "summary": "Buscar mapa de um local específico, gerando um link",
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer",
+            "description": "ID do local a ser buscado",
+            "default": "4"
           },
           {
             "name": "authorization",
             "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/usuario/{email}": {
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "path",
+            "description": "Token de autenticação do usuário",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "type": "string"
+            "type": "string",
+            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9zZWt1bnpAZ21haWwuY29tIiwibm9tZSI6Ikpvc8OpIE9zd2FsZG8gS3VueiBuZXRvIiwiaWF0IjoxNzE1Mzg0MDQ2fQ.rlNRrjgF6f1aE8k7DYpd2ZpxQWNjBFO1DG_fVuCTJug"
+
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Local"
+            }
           },
           "401": {
             "description": "Unauthorized"
           },
           "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/login/": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
+            "description": "Not Found",
             "schema": {
               "type": "object",
               "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
+                "message": {
+                  "type": "string",
+                  "example": "Local não encontrado"
                 }
+              },
+              "xml": {
+                "name": "main"
               }
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Não foi possível buscar o local"
           }
-        }
-      }
-    },
-    "/login/bem_vindo": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
+        },
+        "security": [
+          {
+            "BearerAuth": []
           }
-        }
+        ]
       }
     }
   },

@@ -7,7 +7,7 @@ class loginController {
         try {
 
             /*  
-            #swagger.tags = ['1º - Login (pegue o token)'],
+            #swagger.tags = ['Login (pegue o token)'],
             #swagger.summary = 'Realizar login de usuário.',
             #swagger.parameters['body'] = {
                 in: 'body',

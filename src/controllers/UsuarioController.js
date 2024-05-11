@@ -92,34 +92,6 @@ class UsuarioController {
         }
     }
 
-    async listarUm(req,res) {
-        try {
-                /* #swagger.tags = ['Usuário'] */
-                /* #swagger.security = [{
-                    "BearerAuth": []
-                }] */
-
-            const { id } = req.params
-    
-            const usuario = await Usuario.findByPk(id)
-    
-            if (!usuario) {
-                return res.status(404).json({ message: "Não encontrei usuário com este ID!" })
-            }
-    
-            res.json(usuario)
-    
-        } catch (error) {
-            console.log(error.message)
-            res.status(500).json({
-                error: 'Sinto muito, não consegui localizar nenhum cadastro',
-                error: error
-            })
-        }
-    }
-
-
-
         // DELETANDO UM USUARIO
         async deletar(req, res) {
             try {

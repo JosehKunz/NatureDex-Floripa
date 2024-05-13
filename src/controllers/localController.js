@@ -4,6 +4,8 @@ const Usuario = require("../models/usuario");
 const { default: axios } = require('axios')
 const { getCepCoordinates, openStreetMap } = require('../service/map.service')
 const { gerarLinkGoogleMaps } = require('../service/googleMaps.service.js')
+const { obterClima } = require('../service/weatherApi');
+
 
 class localController {
 
@@ -319,41 +321,39 @@ async atualizar(req, res) {
   }
 }
 
-
 async pegarmapa(req, res) {
     try {
-
-                  /* #swagger.tags = ['Local'] */
-      /* #swagger.summary = 'Buscar mapa de um local específico' */
-      /* #swagger.security = [{
-          "BearerAuth": []
-      }] */
-      /* #swagger.parameters['authorization'] = {
-          in: 'header',
-          description: 'Token de autenticação do usuário',
-          required: true
-      } */
-      /* #swagger.parameters['id'] = {
-          in: 'path',
-          description: 'ID do local a ser buscado',
-          required: true,
-          type: 'integer'
-      } */
-      /* #swagger.responses[200] = {
-          description: 'OK',
-          schema: {
-              $ref: "#/definitions/Local"
-          }
-      } */
-      /* #swagger.responses[404] = {
-          description: 'Not Found',
-          schema: {
-              message: "Local não encontrado"
-          }
-      } */
-      /* #swagger.responses[500] = {
-          description: 'Não foi possível buscar o local'
-      } */
+        /* #swagger.tags = ['Local'] */
+        /* #swagger.summary = 'Buscar mapa de um local específico' */
+        /* #swagger.security = [{
+            "BearerAuth": []
+        }] */
+        /* #swagger.parameters['authorization'] = {
+            in: 'header',
+            description: 'Token de autenticação do usuário',
+            required: true
+        } */
+        /* #swagger.parameters['id'] = {
+            in: 'path',
+            description: 'ID do local a ser buscado',
+            required: true,
+            type: 'integer'
+        } */
+        /* #swagger.responses[200] = {
+            description: 'OK',
+            schema: {
+                $ref: "#/definitions/Local"
+            }
+        } */
+        /* #swagger.responses[404] = {
+            description: 'Not Found',
+            schema: {
+                message: "Local não encontrado"
+            }
+        } */
+        /* #swagger.responses[500] = {
+            description: 'Não foi possível buscar o local'
+        } */
 
         const id = req.params.id;
         const id_usuario = req.payload.sub; // Acessando o ID do usuário a partir do token JWT
@@ -375,20 +375,16 @@ async pegarmapa(req, res) {
         // Gera o link do Google Maps com base nas coordenadas
         const linkGoogleMaps = await gerarLinkGoogleMaps(lat, lon);
 
-        // Adiciona o link ao objeto do local  
-        res.json({ linkGoogleMaps });
+        // Obtém as informações de clima com base nas coordenadas
+        const clima = await obterClima(lat, lon);
 
+        // Adiciona o link e as informações de clima ao objeto do local
+        res.json({ linkGoogleMaps, clima });
 
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ error: 'Não foi possível buscar o local' });
     }
 }
-
-
-
-
-
 }
-
 module.exports = new localController();

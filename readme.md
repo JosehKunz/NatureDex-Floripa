@@ -49,6 +49,15 @@
 `node autoGen.swagger.js`
 
 
+### >>> APIS utilizadas
+> #### Duas APIs integram o projeto, ambas com relação a localidade. Uma para, a partir do CEP buscar latitude e longitude
+`https://nominatim.org/release-docs/latest/api/Overview/`
+
+> #### Outra, uma feauture que ainda não está na main, que coloca muitas outras informações como temperatura, vendo, humidade, índice UV e muito mais
+`https://www.weatherapi.com/api-explorer.aspx`
+
+
+
 # 🌱 Testando o programa
 
 

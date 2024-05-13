@@ -579,10 +579,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Local"
-            }
+            "description": "OK"
           },
           "401": {
             "description": "Unauthorized"

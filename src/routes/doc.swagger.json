@@ -556,7 +556,7 @@
         "tags": [
           "Local"
         ],
-        "summary": "Buscar mapa de um local específico, gerando um link",
+        "summary": "Buscar mapa de um local específico, gerando um link. Além disso, retorna informações úteis do clima atual do local",
         "description": "",
         "parameters": [
           {
